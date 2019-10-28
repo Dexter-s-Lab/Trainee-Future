@@ -3,7 +3,7 @@ import OnePost from './onePost';
 
 export default class Posts extends Component {
   render() {
-        // console.log('companies from post.....', this.props.company)
+        console.log('companies from post.....', this.props.company)
         // const {company}=this.props;
         let post = [...this.props.company.post]
         // console.log('Post:', post)

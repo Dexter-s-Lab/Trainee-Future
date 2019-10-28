@@ -95,11 +95,11 @@ app.get("/posts", (req, res) => {
 
 
 // ______________Delete Post _________________
-app.delete('/deletePost/:_id',(req,res)=> {
+app.delete('/deletePost/:idC/:idP',(req,res)=> {
   console.log('CALL BACK FROM SERVER will delete')
   DB.removePosts(result => {
     res.json(result)
-  },req.params._id)
+  },req.params.idC,req.params.idP)
 })
 
 

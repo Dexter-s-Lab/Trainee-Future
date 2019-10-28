@@ -1,0 +1,1 @@
+/home/owner/Desktop/Trainee-Future/Trainee-Future/Front-End/.gitignore

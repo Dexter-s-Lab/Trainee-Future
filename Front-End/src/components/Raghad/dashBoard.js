@@ -18,29 +18,11 @@ componentDidMount() {
   }
 
 
-// 
-//   {
-//     _id :"5daffec164f44117d59b2614",
-//     name : "noor",
-//     email : "awni@yahoo.com",
-//     website : "8ilu@@@@",
-//     city : "F",
-//     location : "LO3",
-//     img_path : "C:\\fakepath\\1.png",
-//     field : "field3",
-//     password : "00000",
-//     post : [],
-//     __v: 0
-// }
-
-
-
-
-  addPost = async(job_description,field) => {
+  addPost = (job_description,field) => {
     let company_info={...this.props.company}
     console.log('company_info-------- from dashbord', company_info)
 
-   await company_info.post.push({job_description,field})
+    company_info.post.push({job_description,field})
 
 console.log('company_info', company_info)
 

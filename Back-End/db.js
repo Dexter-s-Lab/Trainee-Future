@@ -183,15 +183,15 @@ let addPost = (newData,cb)=>{
 
 }
 //------------------------- Read Post
-let getPosts = (cb,id) => {
+let getPosts = (cb,CId) => {
   console.log('GET POST FROM DATABASE');
-  Companies.find(function(err, docs) {
+  Companies.find({_id:CId},function(err, docs) {
     if (err) {
       console.log('ERR:', err);
       cb(err);
     }else{
-      console.log('DOCS:', docs);
-      cb(docs);
+      console.log('DOCS::::::', docs);
+      cb(docs[0]);
     }
   });
 }; 
@@ -200,14 +200,19 @@ let getPosts = (cb,id) => {
 // ______________Delete Post_________________
 
 
-let removePosts = (cb,_ID) =>{
-  Companies.findByIdAndRemove(_ID,(err,docs)=>{
+let removePosts = (cb,CId,postId) =>{
+  Companies.find({_id:CId},(err,docs)=>{
       if (err){
         cb(err);
         console.log('ERR:', err);
       }else{
         console.log('DOCS:', docs);
-        getPosts(cb);
+        docs[0].post=docs[0].post.filter((elem)=>{
+          return postId!==elem.id
+        })
+        docs[0].save(()=>{
+          getPosts(cb,CId);
+        })
       }
   })
 }

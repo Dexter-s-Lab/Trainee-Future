@@ -16,29 +16,28 @@ import CardDetails from './components/Noor/page/cardDetails'
 
 
 class App extends React.Component {
-  state = {company:{},
+  state = {
+    company:{},
   trainee: {},
 }
 
-//   componentDidMount(){
-//   axios.get('http://localhost:9000/posts')
-//   .then(({data})=>{
-//     console.log("Data1111:", data)
-//     this.setState({
-//       company : data
-//     })
-//   })
-// }
+
 
 deleteItem = _ID => {
-  // const axios = require("axios");
-  axios.delete(`http://localhost:9000/deletePost/${_ID}`)
   console.log('ID', _ID)
-  .then(({data})=>
-  {this.setState({
+
+  // const axios = require("axios");
+  axios.delete(`http://localhost:9000/deletePost/${this.state.company._id}/${_ID}`)
+  .then(({data})=>  {
+    console.log('D',data);
+       this.setState({
     company : data
   }) ;
-  console.log('id' ,_ID);})
+  //   this.setState({
+  //   company : data
+  // }) ;
+  console.log('id' ,_ID);
+})
   
   .catch(error => {
   // handle error
@@ -82,10 +81,6 @@ deleteItem = _ID => {
               />
         <Route path='/register' component={Regist}/>
         <Route path='/student' component={Student}/>
-        {/* <Route path='/List' component={ <List  companies={this.state.companies} details={this.details} />}/> */}
-         {/* <Search/> */}
-        {/* <Student/> */}
-        {/* <Regist/> */}
         <Route  path='/dashboard' component={()=><Dashboard company={this.state.company} deleteItem={this.deleteItem}/>}/>
         <Route path='/cardDetails' component={CardDetails}/>
        

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Logo from '../Noor/com.jpg';
 
 export default class OnePost extends Component {
   render() {
@@ -8,7 +9,7 @@ export default class OnePost extends Component {
        
        <div className="row no-gutters">
          <div className="col-md-4">
-           {/* <img src={Logo} className="card-img img-thumbnail float-left" alt="company logo"/> */}
+           <img src={Logo} className="card-img img-thumbnail float-left" alt="company logo"/>
          </div>
        <div className="card-body">
          <h5 className="card-title">Description</h5>
