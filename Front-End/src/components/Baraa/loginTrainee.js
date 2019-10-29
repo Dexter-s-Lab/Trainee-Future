@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { Link, Route, BrowserRouter, Redirect } from "react-router-dom";
-import axios from "axios";
 
 export default class LoginTrainee extends Component {
   state = {
     email: "",
     password: "",
-    massage: "",
-    // isLoged:false
+    massage: ""
   };
 
   change = event => {
@@ -15,79 +13,71 @@ export default class LoginTrainee extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
- 
-
-  check = async e => {
-    e.preventDefault();
-    await axios
-      .post("http://localhost:9000/loginTrainee", {
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(({ data }) => {
-        console.log('DATA LOGINTRAINEE TRAINEE',data);
-        if (data.length > 0) {
-          console.log("jouzaaaaaaaaaaaaa");
-          this.setState({ massage: "", isLoged:true});
-         
-
-          this.renderRedirect(true);
-       
-        } else {
-          // console.log('wrong juzaaaaaaaaaaaa');
-          this.setState({ massage: "wrong E-mail or password" });
-        }
-      });
-  };
-  renderRedirect = (redirect) => {
-    console.log("Raghadddddddddddddddddd");
-    if (redirect === true) {
-      console.log("Raghadddddddddddddddddd");
-      this.setState({ massage: "Done" , isLoged:true });
-      return <Redirect to="/student" />;
-    }
-  };
-
-
-
   render() {
-
-    
-    if (this.state.email && this.state.massage=='Done') {
-      console.log("this.props.loginTrainee.email");
-      return <Redirect to="/student/" />;
+    if (this.props.isloged === true) {
+      return <Redirect to="/student" />;
     } else {
-      console.log("props said", this.props.loginTrainee);
-
-    
-
       return (
         <BrowserRouter>
-          <div>
+          <h1 style={{ textAlign: "center", marginTop: "100px" }}>
+          
+          <span class="glyphicon glyphicon-education"></span>
+            Login Trainee
+          </h1>
+
+          <div
+            style={{
+              boxShadow: "0 4px 8px 0 rgba(0,0,0,0.8)",
+              width: "40%",
+              borderRadius: "8px",
+              padding: "50px",
+              marginLeft: "30%",
+              marginTop: "50px"
+            }}
+          >
+
+          <div style={{}}>
+            <label htmlFor="email">
+              <h3>Email</h3>
+            </label>
             <input
-              type="email"
+              type="text"
               onChange={this.change}
               value={this.state.email}
               name="email"
-              placeholder="login"
+              placeholder="E-Mail"
             />
+            <label htmlFor="psw">
+              <h3>Password</h3>
+            </label>
             <input
               type="password"
               onChange={this.change}
               value={this.state.password}
               name="password"
-              placeholder="password"
+              placeholder="Enter Password"
             />
-            <button onClick={this.check} className="btn btn-outline-success">
-              Submit Trainee
+            <button
+              onClick={this.props.check}
+              style={{
+                backgroundColor: "#622556",
+                color: "white",
+                fontWeight: "bolder",
+                marginTop: "50px",
+                width: "12.6%",
+                marginLeft: "40.5%",
+                height:"50px",
+                width:"20%"
+              }}
+              className="btn"
+            >
+              Login
             </button>
-
-            {/* <Link to= "/student"  className="btn btn-outline-success" >Submit</Link> */}
           </div>
           {this.state.massage}
+          </div>
         </BrowserRouter>
       );
     }
   }
-
 }
